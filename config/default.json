@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://jay:jay@cluster0.hg059.mongodb.net/blogs?retryWrites=true&w=majority",
+    "jwtsecret": "secretcat"
+}
