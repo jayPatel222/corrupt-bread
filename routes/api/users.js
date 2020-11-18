@@ -7,7 +7,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
 
-
 router.post(
   "/",
   [
@@ -39,7 +38,7 @@ router.post(
         name,
         email,
         avatar,
-        password
+        password,
       });
 
       const salt = await bcrypt.genSalt(10);
@@ -49,19 +48,23 @@ router.post(
       await user.save();
 
       const payload = {
-        user:{
-          id :user.id
+        user: {
+          id: user.id,
+        },
+      };
+      jwt.sign(
+        payload,
+        config.get("jwtsecret"),
+        {
+          expiresIn: 360000,
+        },
+        (e, token) => {
+          if (e) {
+            throw e;
+          }
+          res.json({ token });
         }
-      }
-      jwt.sign(payload,config.get('jwtsecret'),{
-        expiresIn: 360000
-      },(e,token) =>{
-        if(e){
-          throw e;
-        }
-        res.json({token});
-      });
-
+      );
     } catch (error) {
       console.log(error.message);
       res.status(500).send("Server Error");
