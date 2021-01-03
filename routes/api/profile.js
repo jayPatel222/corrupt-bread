@@ -39,6 +39,7 @@ router.post(
       return res.status(400).json({ errors: error.array() });
     }
     const { location, status, linkedin, instagram, date } = req.body;
+    console.log(linkedin, instagram);
     const profileObject = {};
     profileObject.user = req.user.id;
     if (status) profileObject.status = status;
@@ -46,8 +47,8 @@ router.post(
 
     if (date) profileObject.date = date;
     profileObject.social = {};
-    if (linkedin) profileObject.social.linkedin = linkedin;
-    if (instagram) profileObject.social.instagram = instagram;
+    if (linkedin) profileObject.linkedin = linkedin;
+    if (instagram) profileObject.instagram = instagram;
     try {
       let profile = await Profile.findOne({ user: req.user.id });
       if (profile) {
@@ -68,7 +69,7 @@ router.post(
     }
   }
 );
-router.get("/", auth, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const profiles = await Profile.find().populate("user", ["name", "avatar"]);
 
@@ -78,7 +79,7 @@ router.get("/", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-router.get("/user/:user_id", auth, async (req, res) => {
+router.get("/user/:user_id", async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.params.user_id,
@@ -90,7 +91,7 @@ router.get("/user/:user_id", auth, async (req, res) => {
     res.json(profile);
   } catch (error) {
     console.log(error.message);
-    if (err.kind == "ObjectId") {
+    if (error.kind == "ObjectId") {
       return res.status(400).json({ msg: "Profile not found" });
     }
     res.status(500).send("Server Error");

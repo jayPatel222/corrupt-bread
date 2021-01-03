@@ -26,9 +26,9 @@ router.post(
       const newPost = new Post({
         user: req.user.id,
         name: user.name,
-        text: req.body.text,
         subject: req.body.subject,
-        avatar: req.user.id,
+        text: req.body.text,
+        avatar: user.avatar,
       });
       const post = await newPost.save();
       res.json(post);
@@ -75,8 +75,7 @@ router.delete("/:id", auth, async (req, res) => {
     if (!post) {
       return res.status(400).send({ msg: "Post not found" });
     }
-
-    if (post.user === req.user.id) {
+    if (post.user == req.user.id) {
       await post.remove();
       res.json({ msg: "Post deleted" });
     } else {
@@ -155,7 +154,7 @@ router.post(
 
       await post.save();
 
-      res.json(post);
+      res.json(post.comments);
     } catch (err) {
       console.log(err.message);
       res.status(500).send("Server Error");

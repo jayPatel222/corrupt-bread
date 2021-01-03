@@ -1,9 +1,9 @@
 /* Global Styles */
 :root {
-  --primary-color: #17a2b8;
-  --dark-color: #343a40;
-  --light-color: #f4f4f4;
-  --danger-color: #dc3545;
+  --primary-color: #555273;
+  --dark-color: #e23e57;
+  --light-color: #e2eff1;
+  --danger-color: #f30018;
   --success-color: #28a745;
 }
 
@@ -11,6 +11,9 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+html {
+  height: 100%;
 }
 
 body {
@@ -137,6 +140,7 @@ img {
   margin-right: 0.5rem;
   transition: opacity 0.2s ease-in;
   outline: none;
+  border-radius: 5px;
 }
 
 .badge {
@@ -152,8 +156,10 @@ img {
   padding: 0.8rem;
   margin: 1rem 0;
   opacity: 0.9;
-  background: var(--light-color);
-  color: #333;
+  color: var(--primary-color);
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 2px;
 }
 
 .btn-primary,
@@ -184,16 +190,16 @@ img {
 .bg-danger,
 .badge-danger,
 .alert-danger {
-  background: var(--danger-color);
-  color: #fff;
+  border-color: var(--danger-color);
+  color: var(--danger-color);
 }
 
 .btn-success,
 .bg-success,
 .badge-success,
 .alert-success {
-  background: var(--success-color);
-  color: #fff;
+  border-color: var(--success-color);
+  color: var(--success-color);
 }
 
 .btn-white,
@@ -255,7 +261,8 @@ img {
   width: 100%;
   padding: 0.4rem;
   font-size: 1.2rem;
-  border: 1px solid #ccc;
+  border-radius: 5px;
+  border: 2px solid #ccc;
 }
 
 .form input[type="submit"],
@@ -308,7 +315,7 @@ button {
   z-index: 1;
   width: 100%;
   top: 0;
-  border-bottom: solid 1px var(--primary-color);
+  border-bottom: solid 3px var(--primary-color);
   opacity: 0.9;
 }
 
@@ -333,12 +340,25 @@ button {
 /* Landing Page */
 .landing {
   position: relative;
-  background: url("./img/showcase.jpg") no-repeat center center/cover;
+  background: url("./img/stockChemistry.jpg") no-repeat center center/cover;
   height: 100vh;
 }
 
+.signIn {
+  background-color: var(--light-color);
+  padding: 25px;
+  border: var(--primary-color) solid 2px;
+  border-radius: 15px;
+}
+.signUp {
+  background-color: var(--light-color);
+  padding: 25px;
+  border: var(--primary-color) solid 2px;
+  border-radius: 15px;
+}
+
 .landing-inner {
-  color: #fff;
+  color: #ceeddb;
   height: 100%;
   width: 80%;
   margin: auto;
@@ -378,6 +398,7 @@ button {
   align-items: center;
   justify-content: center;
   text-align: center;
+  border-radius: 5px;
 }
 
 .profile-top img {
@@ -455,15 +476,26 @@ button {
 
 /* Posts Page */
 .post-form .post-form-header {
-  background: var(--primary-color);
+  background-color: var(--light-color);
   padding: 0.5rem;
 }
-
+.card {
+  padding: 10px;
+  border: 3px solid var(--primary-color);
+  background-color: var(--light-color);
+  border-radius: 20px;
+  box-shadow: 10px 10px 5px #aaaaaa;
+}
 .post {
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-gap: 2rem;
   align-items: center;
+  border-radius: 20px;
+  border: 3px solid var(--primary-color);
+  background-color: var(--light-color);
+  /* box-shadow: 5px 10px 20px var(--dark-color) inset; */
+  box-shadow: 10px 10px 5px #aaaaaa;
 }
 
 .post > div:first-child {
