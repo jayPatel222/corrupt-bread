@@ -4,7 +4,6 @@ const path = require("path");
 const app = express();
 
 connectDB();
-const PORT = process.env.port || 5000;
 app.use(express.json({ extended: false }));
 
 app.use("/api/users", require("./routes/api/users"));
@@ -18,6 +17,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
-app.listen(PORT, function () {
-  console.log("Server running on 5000");
+var port = process.env.PORT || 3000;
+app.listen(port, "0.0.0.0", function () {
+  console.log("Listening on Port 3000");
 });
