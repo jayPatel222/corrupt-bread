@@ -18,6 +18,7 @@ const ProfileItem = ({
         <h1>{name}</h1>
         <p>{status}</p>
         <p className="my-1">{location && <span>{location}</span>}</p>
+
         <Link to={`/user/${_id}`} className="btn btn-primary">
           View Profile
         </Link>

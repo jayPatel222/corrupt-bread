@@ -13,12 +13,12 @@ const Profiles = ({ getCurrentProfile, getProfiles, profile }) => {
     <Fragment>
       <div className="large text-primary">Users</div>
       <div className="profiles">
-        {profile.profiles.length > 0 ? (
+        {profile.profiles.length > 0 && profile.profile !== null ? (
           profile.profiles.map((profile) => (
             <ProfileItem key={profile._id} profile={profile} />
           ))
         ) : (
-          <h4>No users found...</h4>
+          <h4>Please create your profile to view other users </h4>
         )}
       </div>
     </Fragment>
